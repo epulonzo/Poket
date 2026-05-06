@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { getSmartNudge, SmartNudge } from "../../services/smartAdvice";
 import { TextShimmer } from "../components/TextShimmer";
 import { useAppContext } from "../../context/AppContext";
+import { Logo } from "../components/Logo";
 
 const C = {
   bg: "#080111", card: "rgba(255,255,255,0.075)", cardSoft: "rgba(255,255,255,0.065)",
@@ -101,8 +102,8 @@ export function Home() {
           {/* Header */}
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-              <View style={{ width: 34, height: 34, backgroundColor: C.primary, borderRadius: 10, alignItems: "center", justifyContent: "center" }}>
-                <Text style={{ color: "#071009", fontWeight: "900", fontSize: 11 }}>PK</Text>
+              <View style={{ width: 34, height: 34, backgroundColor: "transparent", alignItems: "center", justifyContent: "center" }}>
+                <Logo width={34} height={34} />
               </View>
               <View>
                 <Text style={{ color: "white", fontWeight: "900", fontSize: 15 }}>Poket</Text>
