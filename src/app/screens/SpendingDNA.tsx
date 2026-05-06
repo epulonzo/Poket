@@ -1,19 +1,24 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Sparkles } from "lucide-react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { getSpendingInsight, SpendingInsight } from "../../services/smartAdvice";
+import { TextShimmer } from "../components/TextShimmer";
+import { useAppContext } from "../../context/AppContext";
 
-const filters = ["All", "Food", "Transport", "Entertainment", "Bills"];
-const categories = [
-  { name: "Food & drinks", spent: 320, budget: 350, percentage: 91, status: "warning" },
-  { name: "Transport", spent: 55, budget: 120, percentage: 46, status: "safe" },
-  { name: "Entertainment", spent: 180, budget: 150, percentage: 100, status: "over" },
-  { name: "Groceries", spent: 115, budget: 200, percentage: 57, status: "safe" },
-];
-
+const filters = ["All", "Food & drinks", "Transport", "Entertainment", "Shopping", "Health"];
 export function SpendingDNA() {
+  const { categorySpending } = useAppContext();
   const [activeFilter, setActiveFilter] = useState("All");
+  const [aiData, setAiData] = useState<SpendingInsight | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getSpendingInsight(categorySpending)
+      .then(setAiData)
+      .finally(() => setLoading(false));
+  }, [categorySpending]);
 
   return (
     <LinearGradient colors={["#0A7E58", "#123C35", "#170725", "#080111"]} locations={[0, 0.2, 0.5, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
@@ -34,7 +39,9 @@ export function SpendingDNA() {
           </ScrollView>
 
           <View style={{ gap: 12, marginBottom: 18 }}>
-            {categories.map((category, index) => {
+            {categorySpending
+              .filter(cat => activeFilter === "All" || cat.name === activeFilter)
+              .map((category, index) => {
               const barColor = category.status === "safe" ? "#20E69C" : category.status === "warning" ? "#F6A623" : "#FF6262";
               return (
                 <View key={index} style={{ backgroundColor: "rgba(255,255,255,0.075)", borderWidth: 1, borderColor: "rgba(255,255,255,0.18)", borderRadius: 24, padding: 16 }}>
@@ -57,6 +64,7 @@ export function SpendingDNA() {
             })}
           </View>
 
+          {/* AI Insight */}
           <View style={{ backgroundColor: "rgba(255,255,255,0.075)", borderWidth: 1, borderColor: "rgba(255,255,255,0.18)", borderRadius: 24, padding: 18, marginBottom: 14 }}>
             <View style={{ flexDirection: "row", alignItems: "flex-start", gap: 12 }}>
               <View style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: "rgba(32,230,156,0.15)", alignItems: "center", justifyContent: "center" }}>
@@ -64,16 +72,29 @@ export function SpendingDNA() {
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={{ color: "#20E69C", fontSize: 13, fontWeight: "900", marginBottom: 6 }}>AI insight</Text>
-                <Text style={{ color: "white", fontSize: 13, lineHeight: 20 }}>You could save RM 90/month by cooking 2 more meals at home instead of eating out.</Text>
+                {loading ? (
+                  <TextShimmer lines={2} />
+                ) : (
+                  <Text style={{ color: "white", fontSize: 13, lineHeight: 20 }}>{aiData?.insight}</Text>
+                )}
               </View>
             </View>
           </View>
 
+          {/* AI Spending Personality */}
           <View style={{ backgroundColor: "rgba(255,255,255,0.075)", borderWidth: 1, borderColor: "rgba(255,255,255,0.18)", borderRadius: 24, padding: 18 }}>
             <Text style={{ color: "#BEB3CB", fontSize: 13, marginBottom: 6 }}>Your spending type</Text>
-            <Text style={{ color: "white", fontSize: 20, fontWeight: "900", marginBottom: 8 }}>Convenience Spender</Text>
-            <Text style={{ color: "#BEB3CB", fontSize: 13, lineHeight: 20, marginBottom: 12 }}>Quick meals, ride-hailing, and instant delivery are your go-to choices.</Text>
-            <Text style={{ color: "#20E69C", fontSize: 13, fontWeight: "900" }}>Similar users save RM 200+ by batch-cooking on weekends.</Text>
+            {loading ? (
+              <View style={{ marginBottom: 12 }}>
+                <TextShimmer lines={3} />
+              </View>
+            ) : (
+              <>
+                <Text style={{ color: "white", fontSize: 20, fontWeight: "900", marginBottom: 8 }}>{aiData?.spendingType}</Text>
+                <Text style={{ color: "#BEB3CB", fontSize: 13, lineHeight: 20, marginBottom: 12 }}>{aiData?.spendingDescription}</Text>
+                <Text style={{ color: "#20E69C", fontSize: 13, fontWeight: "900" }}>{aiData?.peerComparison}</Text>
+              </>
+            )}
           </View>
         </ScrollView>
       </SafeAreaView>

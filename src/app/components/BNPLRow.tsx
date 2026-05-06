@@ -2,34 +2,51 @@ import { View, Text, StyleSheet } from "react-native";
 
 interface BNPLRowProps {
   provider: string;
-  planName: string;
+  initial: string;
   monthlyAmount: number;
-  monthsRemaining: number;
-  riskLevel: "low" | "medium" | "high";
+  monthsLeft: number;
+  risk: "low" | "medium" | "high";
 }
 
-export function BNPLRow({ provider, planName, monthlyAmount, monthsRemaining, riskLevel }: BNPLRowProps) {
-  const riskColors = {
-    low: { bg: "rgba(32, 230, 156, 0.12)", text: "#20E69C" },
-    medium: { bg: "rgba(246, 166, 35, 0.12)", text: "#F6A623" },
-    high: { bg: "rgba(255, 87, 87, 0.12)", text: "#FF5757" },
-  };
-  const colors = riskColors[riskLevel];
-  const riskLabel = riskLevel === "low" ? "Low" : riskLevel === "medium" ? "Medium" : "High";
+export function BNPLRow({ provider, initial, monthlyAmount, monthsLeft, risk }: BNPLRowProps) {
+  const config = {
+    low: {
+      circleBg: "rgba(32, 230, 156, 0.15)",
+      circleText: "#20E69C",
+      pillBg: "rgba(32, 230, 156, 0.12)",
+      pillBorder: "rgba(32, 230, 156, 0.3)",
+      pillText: "#20E69C",
+      label: "Low Risk",
+    },
+    medium: {
+      circleBg: "rgba(246, 166, 35, 0.15)",
+      circleText: "#F6A623",
+      pillBg: "rgba(246, 166, 35, 0.12)",
+      pillBorder: "rgba(246, 166, 35, 0.3)",
+      pillText: "#F6A623",
+      label: "Medium Risk",
+    },
+    high: {
+      circleBg: "rgba(255, 98, 98, 0.15)",
+      circleText: "#FF6262",
+      pillBg: "rgba(255, 98, 98, 0.12)",
+      pillBorder: "rgba(255, 98, 98, 0.3)",
+      pillText: "#FF6262",
+      label: "High Risk",
+    },
+  }[risk];
 
   return (
     <View style={styles.container}>
-      <View style={styles.iconContainer}>
-        <Text style={styles.iconText}>{provider[0]}</Text>
+      <View style={[styles.circle, { backgroundColor: config.circleBg }]}>
+        <Text style={[styles.initial, { color: config.circleText }]}>{initial}</Text>
       </View>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.planName}>{provider}</Text>
-        <Text style={styles.planSubtext}>
-          {planName} - RM {monthlyAmount.toFixed(2)}/mo - {monthsRemaining}m left
-        </Text>
+      <View style={styles.info}>
+        <Text style={styles.provider}>{provider}</Text>
+        <Text style={styles.details}>RM {monthlyAmount}/month · {monthsLeft} months left</Text>
       </View>
-      <View style={[styles.riskPill, { backgroundColor: colors.bg, borderColor: `${colors.text}40` }]}>
-        <Text style={[styles.riskText, { color: colors.text }]}>{riskLabel}</Text>
+      <View style={[styles.pill, { backgroundColor: config.pillBg, borderColor: config.pillBorder }]}>
+        <Text style={[styles.pillText, { color: config.pillText }]}>{config.label}</Text>
       </View>
     </View>
   );
@@ -46,36 +63,37 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 22,
   },
-  iconContainer: {
-    width: 46,
-    height: 46,
-    backgroundColor: "rgba(32, 230, 156, 0.14)",
-    borderRadius: 16,
+  circle: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     alignItems: "center",
     justifyContent: "center",
   },
-  iconText: {
+  initial: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#20E69C",
   },
-  detailsContainer: { flex: 1 },
-  planName: {
+  info: {
+    flex: 1,
+  },
+  provider: {
     color: "#FFFFFF",
     fontWeight: "bold",
+    fontSize: 14,
     marginBottom: 3,
   },
-  planSubtext: {
+  details: {
     fontSize: 12,
     color: "#BEB3CB",
   },
-  riskPill: {
+  pill: {
     paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 20,
+    paddingVertical: 4,
+    borderRadius: 999,
     borderWidth: 1,
   },
-  riskText: {
+  pillText: {
     fontSize: 11,
     fontWeight: "bold",
   },

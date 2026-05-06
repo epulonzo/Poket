@@ -1,88 +1,72 @@
 import { View, Text, StyleSheet } from "react-native";
-import { Check } from "lucide-react-native";
 
 interface StreakDayCircleProps {
-  status: "completed" | "today" | "future";
-  label?: string;
+  day: string;
+  done: boolean;
+  isToday: boolean;
 }
 
-export function StreakDayCircle({ status, label }: StreakDayCircleProps) {
-  if (status === "completed") {
+export function StreakDayCircle({ day, done, isToday }: StreakDayCircleProps) {
+  if (isToday) {
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.completedCircle}>
-          <Check color="#20E69C" size={20} />
-        </View>
-        {label ? <Text style={styles.labelMuted}>{label}</Text> : null}
+      <View style={styles.todayCircle}>
+        <Text style={styles.todayText}>{day}</Text>
       </View>
     );
   }
-
-  if (status === "today") {
+  if (done) {
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.todayCircle}>
-          <Text style={styles.todayText}>T</Text>
-        </View>
-        {label ? <Text style={styles.labelActive}>{label}</Text> : null}
+      <View style={styles.doneCircle}>
+        <Text style={styles.doneText}>{day}</Text>
       </View>
     );
   }
-
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.futureCircle} />
-      {label ? <Text style={styles.labelDim}>{label}</Text> : null}
+    <View style={styles.futureCircle}>
+      <Text style={styles.futureText}>{day}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    alignItems: "center",
-    gap: 4,
-  },
-  completedCircle: {
-    width: 40,
-    height: 40,
-    backgroundColor: "rgba(32, 230, 156, 0.2)",
-    borderWidth: 1,
-    borderColor: "#20E69C",
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   todayCircle: {
-    width: 40,
-    height: 40,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     backgroundColor: "#20E69C",
-    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
   },
   todayText: {
-    fontSize: 14,
+    fontSize: 13,
     color: "#071009",
-    fontWeight: "bold",
+    fontWeight: "900",
   },
-  futureCircle: {
-    width: 40,
-    height: 40,
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
+  doneCircle: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: "rgba(32, 230, 156, 0.15)",
     borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.1)",
-    borderRadius: 20,
+    borderColor: "#20E69C",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  labelMuted: {
-    fontSize: 12,
-    color: "#BEB3CB",
-  },
-  labelActive: {
+  doneText: {
     fontSize: 12,
     color: "#20E69C",
+    fontWeight: "700",
   },
-  labelDim: {
+  futureCircle: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: "rgba(255, 255, 255, 0.06)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  futureText: {
     fontSize: 12,
-    color: "#776D86",
+    color: "#BEB3CB",
   },
 });

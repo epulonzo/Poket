@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
+import { TextShimmer } from "./TextShimmer";
 
 interface GoalCardProps {
   name: string;
@@ -8,9 +9,10 @@ interface GoalCardProps {
   status: "on-track" | "behind";
   autoSaveAmount?: string;
   aiTip?: string;
+  loadingTip?: boolean;
 }
 
-export function GoalCard({ name, current, target, dueDate, status, autoSaveAmount, aiTip }: GoalCardProps) {
+export function GoalCard({ name, current, target, dueDate, status, autoSaveAmount, aiTip, loadingTip }: GoalCardProps) {
   const percentage = Math.round((current / target) * 100);
   const isOnTrack = status === "on-track";
 
@@ -50,7 +52,11 @@ export function GoalCard({ name, current, target, dueDate, status, autoSaveAmoun
         <Text style={styles.autoSave}>Auto-saving {autoSaveAmount}/day</Text>
       ) : null}
 
-      {aiTip ? (
+      {loadingTip ? (
+        <View style={styles.tipBox}>
+          <TextShimmer lines={2} />
+        </View>
+      ) : aiTip ? (
         <View style={styles.tipBox}>
           <Text style={styles.tipText}>{aiTip}</Text>
         </View>
