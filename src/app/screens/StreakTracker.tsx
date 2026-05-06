@@ -21,25 +21,19 @@ const C = {
 };
 
 const personalBest = 21;
-
-const weekHistory = [
-  { day: "S", done: true },
-  { day: "M", done: true },
-  { day: "T", done: true },
-  { day: "W", done: true },
-  { day: "T", done: true },
-  { day: "F", done: true },
-  { day: "S", done: true },
-  { day: "S", done: true },
-  { day: "M", done: true },
-  { day: "T", done: true },
-  { day: "W", done: true }, // today
-  { day: "T", done: false },
-  { day: "F", done: false },
-  { day: "S", done: false },
-];
-
 const todayIndex = 10;
+
+const dayLetters = ["S", "M", "T", "W", "T", "F", "S"];
+
+// Dynamically generate the calendar so "Today" always perfectly matches the real-world day of the week during the pitch!
+const weekHistory = Array.from({ length: 14 }).map((_, i) => {
+  const d = new Date();
+  d.setDate(d.getDate() - (todayIndex - i));
+  return {
+    day: dayLetters[d.getDay()],
+    done: i <= todayIndex, // past days are 'done', future days are blank
+  };
+});
 
 export function StreakTracker() {
   const { totalSpent, budgetLimit } = useAppContext();
