@@ -8,9 +8,9 @@ import { TextShimmer } from "../components/TextShimmer";
 import { useAppContext, Goal, GoalStatus } from "../../context/AppContext";
 
 const C = {
-  card: "rgba(255,255,255,0.075)", cardSoft: "rgba(255,255,255,0.065)",
-  primary: "#20E69C", primarySoft: "rgba(32,230,156,0.15)", textMuted: "#BEB3CB",
-  textSoft: "#DCFBEF", amber: "#F6A623", border: "rgba(255,255,255,0.18)",
+  bg: "#0B0813", card: "rgba(255,255,255,0.075)", cardSoft: "rgba(255,255,255,0.065)",
+  primary: "#7136FD", primarySoft: "rgba(113, 54, 253, 0.15)", textMuted: "#BEB3CB",
+  textSoft: "#DED6FF", amber: "#F6A623", border: "rgba(255,255,255,0.18)",
 };
 
 const EMOJIS = ["🌙", "🛡️", "✈️", "🏠", "🎓", "💍", "🚗", "💻", "🎸", "👟", "🐕"];
@@ -20,9 +20,9 @@ const monthlyRoundUp = 42.80;
 function GoalCard({ goal, onDelete }: { goal: Goal; onDelete: (id: string) => void }) {
   const pct = Math.min(100, Math.round((goal.saved / goal.target) * 100));
   const sc: Record<GoalStatus, { label: string; bg: string; text: string; barColor: string }> = {
-    "on-track": { label: "On track", bg: "rgba(32,230,156,0.15)", text: C.primary, barColor: C.primary },
+    "on-track": { label: "On track", bg: "rgba(113, 54, 253, 0.15)", text: C.primary, barColor: C.primary },
     "behind": { label: "Behind", bg: "rgba(246,166,35,0.15)", text: C.amber, barColor: C.amber },
-    "achieved": { label: "Achieved", bg: "rgba(32,230,156,0.9)", text: "#071009", barColor: C.primary },
+    "achieved": { label: "Achieved", bg: "rgba(113, 54, 253, 0.9)", text: "#FFF", barColor: C.primary },
   };
   const s = sc[goal.status];
 
@@ -97,14 +97,14 @@ export function SavingsGoals() {
   };
 
   return (
-    <LinearGradient colors={["#0A7E58", "#123C35", "#170725", "#080111"]} locations={[0, 0.2, 0.5, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
+    <LinearGradient colors={["#3E0D6F", "#1C0B35", "#0B0813", C.bg]} locations={[0, 0.15, 0.45, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1, backgroundColor: "transparent" }} edges={["top", "left", "right"]}>
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 18, paddingBottom: 112 }} showsVerticalScrollIndicator={false}>
           <Text style={{ color: "white", fontSize: 28, fontWeight: "900", marginBottom: 4 }}>My Savings</Text>
           <Text style={{ color: C.textSoft, fontSize: 14, marginBottom: 20 }}>Round-up engine active</Text>
 
           {/* Round-up banner */}
-          <View style={{ backgroundColor: "rgba(32,230,156,0.1)", borderWidth: 1, borderColor: C.primary, borderRadius: 16, padding: 14, flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 16 }}>
+          <View style={{ backgroundColor: "rgba(113, 54, 253, 0.1)", borderWidth: 1, borderColor: C.primary, borderRadius: 16, padding: 14, flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 16 }}>
             <Repeat2 color={C.primary} size={18} />
             <Text style={{ color: C.primary, fontWeight: "900", fontSize: 13, flex: 1 }}>RM {monthlyRoundUp.toFixed(2)} auto-saved this month via round-ups</Text>
           </View>
@@ -114,8 +114,8 @@ export function SavingsGoals() {
             onPress={() => setShowModal(true)}
             style={{ backgroundColor: C.primary, borderRadius: 20, paddingVertical: 14, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 20 }}
           >
-            <Plus color="#071009" size={20} />
-            <Text style={{ color: "#071009", fontWeight: "900", fontSize: 15 }}>Add New Goal</Text>
+            <Plus color="white" size={20} />
+            <Text style={{ color: "white", fontWeight: "900", fontSize: 15 }}>Add New Goal</Text>
           </TouchableOpacity>
 
           {/* Goal cards */}

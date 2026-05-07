@@ -36,7 +36,7 @@ function PoketTabBar({ state, descriptors, navigation }: MaterialTopTabBarProps)
         paddingTop: 8,
         paddingBottom: bottomPadding,
         paddingHorizontal: 10,
-        backgroundColor: "#080111",
+        backgroundColor: "#0B0813",
         borderTopWidth: 1,
         borderTopColor: "rgba(255, 255, 255, 0.08)",
         flexDirection: "row",
@@ -86,10 +86,10 @@ function PoketTabBar({ state, descriptors, navigation }: MaterialTopTabBarProps)
               }}
             >
               {isFocused && (
-                <View style={{ position: "absolute", top: -8, width: 40, height: 3, backgroundColor: "#20E69C", borderRadius: 2 }} />
+                <View style={{ position: "absolute", top: -8, width: 40, height: 3, backgroundColor: "#7136FD", borderRadius: 2 }} />
               )}
               <Icon
-                color={isFocused ? "#20E69C" : "#A89AB8"}
+                color={isFocused ? "#7136FD" : "#A89AB8"}
                 size={22}
                 strokeWidth={isFocused ? 2.8 : 2.2}
               />
@@ -97,7 +97,7 @@ function PoketTabBar({ state, descriptors, navigation }: MaterialTopTabBarProps)
             <Text
               numberOfLines={1}
               style={{
-                color: isFocused ? "#20E69C" : "#A89AB8",
+                color: isFocused ? "#7136FD" : "#A89AB8",
                 fontSize: 10,
                 lineHeight: 13,
                 fontWeight: isFocused ? "800" : "600",
@@ -122,7 +122,7 @@ export function Layout() {
       screenOptions={{
         swipeEnabled: false,
         animationEnabled: true,
-        sceneStyle: { backgroundColor: "#080111" },
+        sceneStyle: { backgroundColor: "#0B0813" },
       }}
     >
       <Tab.Screen name="Home" component={Home} />

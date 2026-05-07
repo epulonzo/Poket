@@ -11,11 +11,11 @@ interface BNPLRowProps {
 export function BNPLRow({ provider, initial, monthlyAmount, monthsLeft, risk }: BNPLRowProps) {
   const config = {
     low: {
-      circleBg: "rgba(32, 230, 156, 0.15)",
-      circleText: "#20E69C",
-      pillBg: "rgba(32, 230, 156, 0.12)",
-      pillBorder: "rgba(32, 230, 156, 0.3)",
-      pillText: "#20E69C",
+      circleBg: "rgba(113, 54, 253, 0.15)",
+      circleText: "#7136FD",
+      pillBg: "rgba(113, 54, 253, 0.12)",
+      pillBorder: "rgba(113, 54, 253, 0.3)",
+      pillText: "#7136FD",
       label: "Low Risk",
     },
     medium: {

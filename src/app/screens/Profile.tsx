@@ -1,17 +1,18 @@
 import { View, Text, ScrollView, TouchableOpacity, Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Shield, Trophy, ChevronRight, LogOut } from "lucide-react-native";
+import { Shield, Trophy, ChevronRight, LogOut, User } from "lucide-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { useAppContext } from "../../context/AppContext";
 
 const C = {
-  card: "rgba(255, 255, 255, 0.075)",
-  cardSoft: "rgba(255, 255, 255, 0.065)",
-  primary: "#20E69C",
-  primarySoft: "rgba(32, 230, 156, 0.15)",
+  bg: "#0B0813",
+  card: "rgba(255,255,255,0.075)",
+  cardSoft: "rgba(255,255,255,0.065)",
+  primary: "#7136FD",
+  primarySoft: "rgba(113, 54, 253, 0.15)",
   textMuted: "#BEB3CB",
-  textSoft: "#DCFBEF",
+  textSoft: "#DED6FF",
   amber: "#F6A623",
   danger: "#FF6262",
   border: "rgba(255,255,255,0.18)",
@@ -34,13 +35,6 @@ const user = {
   joinDate: "March 2026",
   gxbankTier: "GXBank Young Saver",
 };
-
-const stats = [
-  { label: "Total saved", value: "RM 642", color: C.primary },
-  { label: "Best streak", value: "21 days", color: C.primary },
-  { label: "Budget met", value: "78%", color: C.amber },
-  { label: "Active BNPL", value: "3 plans", color: C.danger },
-];
 
 type MenuItem = {
   icon: React.ComponentType<{ color: string; size: number }>;
@@ -80,7 +74,7 @@ export function Profile() {
   };
 
   return (
-    <LinearGradient colors={["#0A7E58", "#123C35", "#170725", "#080111"]} locations={[0, 0.2, 0.5, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
+    <LinearGradient colors={["#3E0D6F", "#1C0B35", "#0B0813", C.bg]} locations={[0, 0.15, 0.45, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1, backgroundColor: "transparent" }} edges={["top", "left", "right"]}>
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 18, paddingBottom: 112 }} showsVerticalScrollIndicator={false}>
           <Text style={{ color: "white", fontSize: 28, fontWeight: "900", marginBottom: 20 }}>Profile</Text>

@@ -9,12 +9,13 @@ import { TextShimmer } from "../components/TextShimmer";
 import { useAppContext } from "../../context/AppContext";
 
 const C = {
+  bg: "#0B0813",
   card: "rgba(255, 255, 255, 0.075)",
   cardSoft: "rgba(255, 255, 255, 0.065)",
-  primary: "#20E69C",
-  primarySoft: "rgba(32, 230, 156, 0.15)",
+  primary: "#7136FD",
+  primarySoft: "rgba(113, 54, 253, 0.15)",
   textMuted: "#BEB3CB",
-  textSoft: "#DCFBEF",
+  textSoft: "#DED6FF",
   amber: "#F6A623",
   danger: "#FF6262",
   border: "rgba(255,255,255,0.18)",
@@ -58,7 +59,7 @@ export function StreakTracker() {
   }, []);
 
   return (
-    <LinearGradient colors={["#0A7E58", "#123C35", "#170725", "#080111"]} locations={[0, 0.2, 0.5, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
+    <LinearGradient colors={["#3E0D6F", "#1C0B35", "#0B0813", "#0B0813"]} locations={[0, 0.15, 0.45, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1, backgroundColor: "transparent" }} edges={["top", "left", "right"]}>
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 18, paddingBottom: 112 }} showsVerticalScrollIndicator={false}>
           <Text style={{ color: "white", fontSize: 28, fontWeight: "900", marginBottom: 4 }}>Daily Streak</Text>
@@ -99,7 +100,6 @@ export function StreakTracker() {
           </View>
 
           {/* Recovery mode */}
-          {isBroken ? (
             <View style={{ backgroundColor: "rgba(255,98,98,0.1)", borderWidth: 1, borderColor: C.danger, borderRadius: 20, padding: 16, marginBottom: 16 }}>
               <Text style={{ color: C.danger, fontWeight: "900", fontSize: 14, marginBottom: 6 }}>Streak Frozen 🧊</Text>
               <Text style={{ color: "white", fontSize: 12, lineHeight: 18, marginBottom: 12 }}>
@@ -110,7 +110,7 @@ export function StreakTracker() {
                   Alert.alert("Recovery Sprint Activated!", "Your daily budget is temporarily lowered to RM 30. Complete 3 days of safe spending to restore your 11-day streak!");
                   setHasRecovered(true);
                 }}
-                style={{ backgroundColor: C.danger, paddingVertical: 10, borderRadius: 12, alignItems: "center" }}
+                style={{ backgroundColor: C.danger, paddingVertical: 12, borderRadius: 16, alignItems: "center" }}
               >
                 <Text style={{ color: "white", fontWeight: "900" }}>Start 3-Day Sprint</Text>
               </TouchableOpacity>

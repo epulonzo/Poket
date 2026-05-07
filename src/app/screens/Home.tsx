@@ -10,9 +10,9 @@ import { useAppContext } from "../../context/AppContext";
 import { Logo } from "../components/Logo";
 
 const C = {
-  bg: "#080111", card: "rgba(255,255,255,0.075)", cardSoft: "rgba(255,255,255,0.065)",
-  primary: "#20E69C", primarySoft: "rgba(32,230,156,0.15)", textMuted: "#BEB3CB",
-  textSoft: "#DCFBEF", amber: "#F6A623", danger: "#FF6262", border: "rgba(255,255,255,0.18)",
+  bg: "#0B0813", card: "rgba(255,255,255,0.075)", cardSoft: "rgba(255,255,255,0.065)",
+  primary: "#7136FD", primarySoft: "rgba(113, 54, 253, 0.15)", textMuted: "#BEB3CB",
+  textSoft: "#DED6FF", amber: "#F6A623", danger: "#FF6262", border: "rgba(255,255,255,0.14)",
 };
 
 const PRESETS = [
@@ -116,7 +116,7 @@ export function Home() {
   };
 
   return (
-    <LinearGradient colors={["#0A7E58", "#123C35", "#170725", C.bg]} locations={[0, 0.2, 0.5, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
+    <LinearGradient colors={["#3E0D6F", "#1C0B35", "#0B0813", C.bg]} locations={[0, 0.15, 0.45, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1, backgroundColor: "transparent" }} edges={["top", "left", "right"]}>
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 112 }} showsVerticalScrollIndicator={false}>
 
@@ -128,7 +128,7 @@ export function Home() {
               </View>
               <View>
                 <Text style={{ color: "white", fontWeight: "900", fontSize: 15 }}>Poket</Text>
-                <Text style={{ color: "#C8FFE9", fontSize: 10, fontWeight: "700" }}>Powered by GXBank</Text>
+                <Text style={{ color: "#D1C4FF", fontSize: 10, fontWeight: "700" }}>Powered by GXBank</Text>
               </View>
             </View>
             <View style={{ flexDirection: "row", gap: 10 }}>
@@ -136,7 +136,7 @@ export function Home() {
                 <Bell color="#F4ECFF" size={19} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate("Profile")} style={{ width: 42, height: 42, backgroundColor: C.primary, borderRadius: 21, alignItems: "center", justifyContent: "center" }}>
-                <User color="#071009" size={19} />
+                <User color="white" size={19} />
               </TouchableOpacity>
             </View>
           </View>
@@ -150,7 +150,7 @@ export function Home() {
             <Text style={{ color: "white", fontSize: 36, fontWeight: "900", marginBottom: 8 }}>RM {balance.toFixed(2)}</Text>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
               <View style={{ width: 7, height: 7, backgroundColor: C.primary, borderRadius: 4 }} />
-              <Text style={{ color: "#B8FFE2", fontSize: 12, fontWeight: "800" }}>Live balance</Text>
+              <Text style={{ color: "#DED6FF", fontSize: 12, fontWeight: "800" }}>Live balance</Text>
             </View>
           </View>
 
@@ -218,7 +218,7 @@ export function Home() {
                   onPress={handleSaveIt}
                   disabled={nudgeLoading}
                 >
-                  <Text style={{ color: "#071009", fontWeight: "900" }}>{nudge?.actionLabel ?? "Yes, save it"}</Text>
+                  <Text style={{ color: "white", fontWeight: "900" }}>{nudge?.actionLabel ?? "Yes, save it"}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={{ flex: 1, backgroundColor: "rgba(255,255,255,0.06)", paddingVertical: 13, borderRadius: 16, borderWidth: 1, borderColor: C.border, alignItems: "center" }}

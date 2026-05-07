@@ -8,13 +8,9 @@ import { getChallengeMotivation, ChallengeMotivation } from "../../services/smar
 import { TextShimmer } from "../components/TextShimmer";
 
 const C = {
-  card: "rgba(255, 255, 255, 0.075)",
-  cardSoft: "rgba(255, 255, 255, 0.065)",
-  primary: "#20E69C",
-  primarySoft: "rgba(32, 230, 156, 0.15)",
-  textMuted: "#BEB3CB",
-  textSoft: "#DCFBEF",
-  border: "rgba(255,255,255,0.18)",
+  bg: "#0B0813", card: "rgba(255,255,255,0.075)", cardSoft: "rgba(255,255,255,0.065)",
+  primary: "#7136FD", primarySoft: "rgba(113, 54, 253, 0.15)", textMuted: "#BEB3CB",
+  textSoft: "#DED6FF", amber: "#F6A623", danger: "#FF6262", border: "rgba(255,255,255,0.18)",
 };
 
 const challengeData = {
@@ -52,7 +48,7 @@ export function Challenge() {
   };
 
   return (
-    <LinearGradient colors={["#0A7E58", "#123C35", "#170725", "#080111"]} locations={[0, 0.2, 0.5, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
+    <LinearGradient colors={["#3E0D6F", "#1C0B35", "#0B0813", C.bg]} locations={[0, 0.15, 0.45, 0.92]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1, backgroundColor: "transparent" }} edges={["top", "left", "right"]}>
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 18, paddingBottom: 112 }} showsVerticalScrollIndicator={false}>
           <TouchableOpacity
@@ -66,7 +62,7 @@ export function Challenge() {
           <Text style={{ color: C.textSoft, fontSize: 14, marginBottom: 20 }}>30-Day National Savings Campaign · GXBank</Text>
 
           {/* Rank card */}
-          <View style={{ backgroundColor: C.cardSoft, borderRadius: 24, borderWidth: 1, borderColor: "rgba(32,230,156,0.3)", padding: 20, marginBottom: 16 }}>
+          <View style={{ backgroundColor: C.cardSoft, borderRadius: 24, borderWidth: 1, borderColor: "rgba(113, 54, 253, 0.3)", padding: 20, marginBottom: 16 }}>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 10 }}>
               <Trophy color={C.primary} size={20} />
               <Text style={{ color: C.textMuted, fontSize: 13 }}>Your Ranking</Text>
@@ -94,7 +90,7 @@ export function Challenge() {
           <Text style={{ color: "white", fontSize: 16, fontWeight: "900", marginBottom: 12 }}>Milestones</Text>
           <View style={{ gap: 10, marginBottom: 20 }}>
             {milestones.map((m) => (
-              <View key={m.id} style={{ backgroundColor: C.card, borderRadius: 24, borderWidth: 1, borderColor: m.achieved ? "rgba(32,230,156,0.3)" : C.border, padding: 16, flexDirection: "row", alignItems: "flex-start", gap: 14 }}>
+              <View key={m.id} style={{ backgroundColor: C.card, borderRadius: 24, borderWidth: 1, borderColor: m.achieved ? "rgba(113, 54, 253, 0.3)" : C.border, padding: 16, flexDirection: "row", alignItems: "flex-start", gap: 14 }}>
                 <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: m.achieved ? C.primarySoft : "rgba(255,255,255,0.06)", alignItems: "center", justifyContent: "center" }}>
                   {m.achieved ? <CheckCircle color={C.primary} size={22} /> : <Lock color={C.textMuted} size={22} />}
                 </View>
@@ -141,7 +137,7 @@ export function Challenge() {
 
           {/* Share button */}
           <TouchableOpacity style={{ backgroundColor: C.primary, borderRadius: 20, paddingVertical: 14, alignItems: "center", marginBottom: 8 }} onPress={handleShare}>
-            <Text style={{ color: "#071009", fontWeight: "900", fontSize: 15 }}>Share My Progress</Text>
+            <Text style={{ color: "white", fontWeight: "900", fontSize: 15 }}>Share My Progress</Text>
           </TouchableOpacity>
           <Text style={{ color: C.textMuted, fontSize: 11, textAlign: "center" }}>Powered by GXBank</Text>
         </ScrollView>

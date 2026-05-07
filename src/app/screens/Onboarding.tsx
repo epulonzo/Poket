@@ -8,12 +8,12 @@ import { Lightbulb, Target, Flame, Shield, ChevronRight, Sparkles, Heart } from 
 const { width } = Dimensions.get("window");
 
 const C = {
-  primary: "#20E69C",
-  primarySoft: "rgba(32, 230, 156, 0.15)",
+  primary: "#7136FD",
+  primarySoft: "rgba(113, 54, 253, 0.15)",
   card: "rgba(255,255,255,0.075)",
   border: "rgba(255,255,255,0.18)",
   textMuted: "#BEB3CB",
-  textSoft: "#DCFBEF",
+  textSoft: "#DED6FF",
 };
 
 const FEATURES = [
@@ -86,8 +86,8 @@ function Slide3({ onStart }: { onStart: () => void }) {
         activeOpacity={0.85}
         style={{ width: "100%", backgroundColor: C.primary, borderRadius: 20, paddingVertical: 18, alignItems: "center", flexDirection: "row", justifyContent: "center", gap: 10 }}
       >
-        <Text style={{ color: "#071009", fontWeight: "900", fontSize: 17 }}>Get Started</Text>
-        <ChevronRight color="#071009" size={20} />
+        <Text style={{ color: "white", fontWeight: "900", fontSize: 17 }}>Get Started</Text>
+        <ChevronRight color="white" size={20} />
       </TouchableOpacity>
     </View>
   );
@@ -130,8 +130,8 @@ export function Onboarding({ onComplete }: { onComplete: () => void }) {
 
   return (
     <LinearGradient
-      colors={["#0A7E58", "#123C35", "#170725", "#080111"]}
-      locations={[0, 0.2, 0.5, 0.92]}
+      colors={["#3E0D6F", "#1C0B35", "#0B0813", "#0B0813"]}
+      locations={[0, 0.15, 0.45, 0.92]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={{ flex: 1 }}
