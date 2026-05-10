@@ -16,6 +16,7 @@
 - **Poket Challenge** — National savings leaderboard with milestone rewards
 - **Spending DNA** — Category-level spending breakdown that updates live from your transactions
 - **Aura Evolution** — Gamified identity system where consistent saving unlocks new visual cores
+- **Dynamic Theming** — Seamless Dark/Light mode toggle with adaptive UI elements
 
 ---
 
@@ -29,7 +30,7 @@
 | State | React Context API |
 | AI Advice | Google Gemini API (via `smartAdvice.ts`) |
 | Icons | lucide-react-native |
-| Animations | React Native built-in Animated API |
+| Animations | React Native Reanimated, Lottie & Animated API |
 
 ---
 
@@ -57,7 +58,7 @@ src/
 ├── app/
 │   ├── components/           # Reusable UI components
 │   │   ├── Layout.tsx        # Material Top Tab navigator (bottom-positioned)
-│   │   ├── AuraCore.tsx      # Animated gamification orb (RN Animated API)
+│   │   ├── AuraCore.tsx      # Animated gamification orb (Reanimated API)
 │   │   ├── GoalCard.tsx      # Savings goal card component
 │   │   ├── TextShimmer.tsx   # Loading shimmer animation
 │   │   ├── BNPLRow.tsx       # BNPL plan row card
@@ -98,7 +99,8 @@ src/
 7. Navigate to **Profile** → showcase the user's Aura Core, XP level progress, financial stats (Top 4% National rank), and the Earn Sparks / Evolution Chamber system.
 8. From the **Tools** section on Profile, navigate to **Debt Radar** → explain the BNPL risk calculator and how it protects Gen-Z credit scores.
 9. From the **Tools** section on Profile, navigate to the **Challenge** leaderboard → show the national university rankings and gamified milestones.
-10. Finally, tap **Log Out** on the Profile screen to loop back to the Onboarding screen.
+10. Scroll down to **Appearance** on the Profile screen → toggle the **Dark/Light Mode** switch and watch the entire app instantly adapt its colors and gradients.
+11. Finally, tap **Log Out** on the Profile screen to loop back to the Onboarding screen.
 
 ---
 
